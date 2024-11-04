@@ -13,7 +13,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop🛒 - ALOHA CLASS🌴</title>
+<title>Shop</title>
 <!-- 파비콘 -->
 <link rel="icon" href="/static/img/logo.png" type="image/x-icon">
 <!-- 썸네일 이미지 설정 -->
