@@ -21,7 +21,7 @@
 	
 	if (!Pattern.matches("^[가-힣]+$", name)) {
         response.sendRedirect("join.jsp?error=name_invalid");
-        return; // 이름 형식이 유효하지 않음
+        return;
     }
 
     // 생일 포맷팅

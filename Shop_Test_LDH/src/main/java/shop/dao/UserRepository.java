@@ -87,33 +87,29 @@ public class UserRepository extends JDBConnection {
 	 * @return
 	 */
 	public User getUserById(String id) {
+		String sql = "SELECT * FROM user WHERE id = ?";
 		User user = null;
-	    String sql = " SELECT id, password, name, gender, birth, mail, phone, address, regist_day FROM user WHERE id = ? AND password = ? ";
-
-	    try {
-	        psmt = con.prepareStatement(sql);
-	        psmt.setString(1, id);
-	        rs = psmt.executeQuery();
-
-	        if (rs.next()) { // 사용자가 존재하는 경우
-	            user = new User();
-	            user.setId(rs.getString("id"));
-	            user.setPassword(rs.getString("password"));
-	            user.setName(rs.getString("name"));
-	            user.setGender(rs.getString("gender"));
-	            user.setBirth(rs.getString("birth"));
-	            user.setMail(rs.getString("mail"));
-	            user.setPhone(rs.getString("phone"));
-	            user.setAddress(rs.getString("address"));
-	            user.setRegistDay(rs.getString("regist_day"));
-	        }
-
-	    } catch (Exception e) {
-	        System.err.println("로그인 중 예외 발생");
-	        e.printStackTrace();
-	    }
-
-	    return user;
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				user = new User();
+				user.setId(rs.getString("id"));
+				user.setPassword(rs.getString("password"));
+				user.setName(rs.getString("name"));
+				user.setGender(rs.getString("gender"));
+				user.setBirth(rs.getString("birth"));
+				user.setMail(rs.getString("mail"));
+				user.setPhone(rs.getString("phone"));
+				user.setAddress(rs.getString("address"));
+				user.setRegistDay(rs.getString("regist_day"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return user;
 	}
 	
 	
