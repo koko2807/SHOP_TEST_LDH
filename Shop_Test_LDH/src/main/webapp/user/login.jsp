@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>로그인</title>
+	<title>Shop</title>
 	<jsp:include page="/layout/meta.jsp" /> <jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
@@ -22,7 +22,21 @@
 		}
 		
 		// 아이디 저장 쿠키 가져오기
-		
+		String rememberId ="";
+		String id="";
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null){
+			for(Cookie cookie : cookies){
+				String cookieName = cookie.getName();
+				String cookieValue = URLDecoder.decode(cookie.getValue(), "UTF-8");
+				switch(cookieName){
+					case "id" : id = cookieValue; break;
+					case "rememberId" : rememberId = cookieValue; break;
+				}
+			}
+		}
+		pageContext.setAttribute("id", id);
+		pageContext.setAttribute("rememberId", rememberId);
 		
 	%>
 	<jsp:include page="/layout/header.jsp" />
@@ -46,16 +60,16 @@
 	    <div class="form-check text-start my-3 d-flex justify-content-around">
 	    	<div class="item">
 	    	  <%
-// 	    	  	if( rememberId != null && rememberId.equals("on") ) {
+	    	  	if( rememberId != null && rememberId.equals("on") ) {
 	    	  %>
 			      <input class="form-check-input" type="checkbox" name="remember-id" id="flexCheckDefault1"
 			      		 checked>
 			  <%
-// 	    	  	} else {
+	    	  	} else {
 	    	  %>  
 			      <input class="form-check-input" type="checkbox" name="remember-id" id="flexCheckDefault1">
 			  <% 
-// 	    	  	}
+	    	  	}
 	    	  %>	
 		      <label class="form-check-label" for="flexCheckDefault1">아이디 저장</label>
 	    	</div>
@@ -86,11 +100,3 @@
 	<jsp:include page="/layout/script.jsp" />
 </body>
 </html>
-
-
-
-
-
-
-
-
