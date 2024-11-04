@@ -16,7 +16,7 @@
 	
 	<!-- 회원 가입 영역 -->
 	<div class="container shop p-5 mb-5" >
-		<form action="join_pro.jsp" name="joinForm" method="post" onsubmit="return validateForm();">
+		<form action="join_pro.jsp" name="joinForm" method="post" >
 		
 			<div class="input-group mb-3 row">
 				<label class="input-group-text col-md-4" id="">아이디</label>
@@ -145,55 +145,4 @@
 	<jsp:include page="/layout/footer.jsp" />
 	<jsp:include page="/layout/script.jsp" />
 </body>
-<script>
-function validateForm() {
-    const id = document.getElementById("id");
-    const password = document.getElementById("password");
-    const confirmPassword = document.getElementById("confirmPassword");
-    const name = document.getElementById("name");
-
-    // 아이디 유효성 검사 (영문자 또는 한글로 시작)
-    const idPattern = /^[a-zA-Z가-힣][a-zA-Z가-힣0-9]*$/;
-    if (!check(idPattern, id, "아이디는 영문자 또는 한글로 시작해야 합니다.")) return false;
-
-    // 비밀번호 유효성 검사 (영문자, 숫자, 특수문자 포함, 6자 이상, 특수문자 1개 이상 포함)
-    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{6,}$/;
-    if (!check(passwordPattern, password, "비밀번호는 영문자, 숫자, 특수문자를 포함하여 6자 이상이어야 합니다.")) return false;
-
-    // 비밀번호 확인 유효성 검사
-    if (password.value !== confirmPassword.value) {
-        alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-        confirmPassword.select();
-        confirmPassword.focus();
-        return false;
-    }
-
-    // 이름 유효성 검사 (한글만 입력)
-    const namePattern = /^[가-힣]+$/;
-    if (!check(namePattern, name, "이름은 한글만 입력해야 합니다.")) return false;
-
-    alert("모든 입력이 유효합니다.");
-    return true;
-}
-
-// 정규표현식 유효성 검사 함수
-function check(regExp, element, msg) {
-    if (regExp.test(element.value)) {
-        return true;
-    }
-    alert(msg);
-    element.select();
-    element.focus();
-    return false;
-}
-
-</script>
 </html>
-
-
-
-
-
-
-
-

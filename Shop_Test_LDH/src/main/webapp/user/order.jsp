@@ -17,13 +17,31 @@
 	<% 
 
 		// ...
+		String root = request.getContextPath();
 	
+		Boolean login = (Boolean) session.getAttribute("login");
+		if (login == null) {
+			login = false;
+		}
 	
 		// 주문 내역 목록을 세션에서 가져오기
+		List<Product> orderList = (List<Product>) session.getAttribute("orderList");
+		String orderPhone = (String) session.getAttribute("orderPhone");
+		
+		boolean hasOrderList = (orderList != null && !orderList.isEmpty());
 		
 		// 회원인 경우
-		
-		
+		User user = null;
+		if (login) {
+			UserRepository userRepo = new UserRepository();
+			String userId = (String) session.getAttribute("userId");
+			user = userRepo.getUserById(userId); // 회원 정보 가져오기
+			if (user != null) {
+				orderPhone = user.getPhone();
+				orderList = new OrderRepository().getOrdersByUserId(userId); // 회원 주문 내역 가져오기
+				hasOrderList = (orderList != null && !orderList.isEmpty());
+			}
+		}
 	%>
 	
 	<jsp:include page="/layout/header.jsp" />

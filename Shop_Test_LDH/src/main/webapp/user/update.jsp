@@ -7,7 +7,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Shop</title>
-	<jsp:include page="/layout/meta.jsp" /> <jsp:include page="/layout/link.jsp" />
+	<jsp:include page="/layout/meta.jsp" /> 
+	<jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
 	<% 
@@ -24,8 +25,8 @@
 			login = true;
 		}
 		
-		UserRepository userDAO = new UserRepository();
-		User loginUser = userDAO.getUserById(loginId);
+		UserRepository userRepository = new UserRepository();
+		User loginUser = userRepository.getUserById(loginId);
 		
 		// 이메일 : 아이디@도메인 분리
 		String mail = loginUser.getMail();
@@ -272,11 +273,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-

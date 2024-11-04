@@ -15,9 +15,16 @@
 	session.invalidate();
 
 	// 쿠키 전달
+	String rememberId ="";
+	String name="";
 	Cookie cookieId = new Cookie("name", name);
     Cookie cookieRememberId = new Cookie("rememberId", rememberId);
-	
-	cookieId.setPath("/");
-    cookieRememberId.setPath("/");
+    
+ // 경로와 유효시간 설정 후 쿠키 추가
+ 	cookieId.setPath("/");
+ 	cookieRememberId.setPath("/");
+ 	cookieId.setMaxAge(0);
+ 	cookieRememberId.setMaxAge(0);
+ 	response.addCookie(cookieId);
+ 	response.addCookie(cookieRememberId);
 %>

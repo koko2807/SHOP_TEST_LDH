@@ -10,7 +10,10 @@
 	<jsp:include page="/layout/meta.jsp" /> <jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
-	
+	<%
+		// root 변수 정의
+		String root = request.getContextPath();
+	%>
 	<jsp:include page="/layout/header.jsp" />
 	
 	<div class="row m-0 mypage">
@@ -18,10 +21,10 @@
 			<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary">
 			    <ul class="nav nav-pills flex-column mb-auto">
 			      <!-- 로그인 시 -->
-			      <% if( login ) { %>
+<%-- 			      <% if( login ) { %> --%>
 			      	
 			      	
-			      <% } %>
+<%-- 			      <% } %> --%>
 			      <li>
 			        <a href="<%= root %>/user/order.jsp" class="nav-link link-body-emphasis">
 			          주문내역

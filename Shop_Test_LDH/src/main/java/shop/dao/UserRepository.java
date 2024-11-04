@@ -49,7 +49,7 @@ public class UserRepository extends JDBConnection {
 	 */
 	public User login(String id, String pw) {
 		User user = null;
-		String sql = " SELECT id, password, name, gender, birth, mail, phone, address, regist_day FROM users WHERE id = ? AND password = ? ";
+		String sql = " SELECT id, password, name, gender, birth, mail, phone, address, regist_day FROM user WHERE id = ? AND password = ? ";
 
 		try {
 			psmt = con.prepareStatement(sql);
@@ -88,7 +88,7 @@ public class UserRepository extends JDBConnection {
 	 */
 	public User getUserById(String id) {
 		User user = null;
-	    String sql = " SELECT id, password, name, gender, birth, mail, phone, address, regist_day FROM users WHERE id = ? AND password = ? ";
+	    String sql = " SELECT id, password, name, gender, birth, mail, phone, address, regist_day FROM user WHERE id = ? AND password = ? ";
 
 	    try {
 	        psmt = con.prepareStatement(sql);
